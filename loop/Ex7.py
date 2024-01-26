@@ -1,14 +1,16 @@
 clientes = []
-codigo = None
 
-altura_max = 0
-peso_max = 0
+cliente_mais_alto = None
+cliente_mais_baixo = None
+cliente_mais_magro = None
+cliente_menos_magro = None
 
-altura_min = 999
-peso_min = 999
+soma_altura = 0
+soma_peso = 0
 
 while True:
     codigo = int(input("Digite o código [0 = Encerrar Cadastro]: "))
+
     if codigo == 0: break
 
     altura = int(input("Digite a altura em cm: "))
@@ -17,27 +19,25 @@ while True:
     cliente = {"codigo": codigo, "altura": altura, "peso": peso}
     clientes.append(cliente)
 
-for i in clientes:
-    if i["altura"] > altura_max:
-        altura_max = i["altura"]
-    elif i["altura"] < altura_min:
-        altura_min = i["altura"]
+for cliente in clientes:
+    soma_altura += cliente["altura"]
+    soma_peso += cliente["peso"]
 
-    if i["peso"] > peso_max:
-        peso_max = i["peso"]
-    elif i["peso"] < peso_min:
-        peso_min = i["peso"]
+    if cliente_mais_alto == None or cliente["altura"] > cliente_mais_alto["altura"]:
+        cliente_mais_alto = cliente
 
-for i in clientes:
-    if altura_max == i["altura"]:
-        print(f"Cliente mais alto:\nCódigo: {i["codigo"]}, Altura: {i["altura"]}, Peso: {i["peso"]}")
-    elif altura_min == i["altura"]:
-        print(f"Cliente mais baixo:\nCódigo: {i["codigo"]}, Altura: {i["altura"]}, Peso: {i["peso"]}")
+    if cliente_mais_baixo == None or cliente["altura"] < cliente_mais_baixo["altura"]:
+        cliente_mais_baixo = cliente
 
-    if peso_max == i["peso"]:
-        print(f"Cliente menos magro:\nCódigo: {i["codigo"]}, Altura: {i["altura"]}, Peso: {i["peso"]}")
-    elif peso_min == i["peso"]:
-        print(f"Cliente mais magro:\nCódigo: {i["codigo"]}, Altura: {i["altura"]}, Peso: {i["peso"]}")
+    if cliente_mais_magro == None or cliente["peso"] < cliente_mais_magro["peso"]:
+        cliente_mais_magro = cliente
 
-print(f"Média das alturas: {sum(clientes["altura"])/len(clientes)} | Média dos pesos: {sum(clientes["peso"])/len(clientes)} ")
-# print(f"Maior altura: {altura_max} | Menor altura: {altura_min}\nMaior peso: {peso_max} | Menor peso: {peso_min}")
+    if cliente_menos_magro == None or cliente["peso"] > cliente_menos_magro["peso"]:
+        cliente_menos_magro = cliente
+
+media_altura = soma_altura / len(clientes)
+media_peso = soma_peso / len(clientes)
+
+print(f"Média das alturas: {media_altura} | Média dos pesos: {media_peso}\n")
+
+print(f"Cliente mais alto: {cliente_mais_alto} | Cliente mais baixo: {cliente_mais_baixo}\nCliente mais magro: {cliente_mais_magro} | Cliente menos magro: {cliente_menos_magro}")

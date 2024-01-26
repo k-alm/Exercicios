@@ -5,11 +5,10 @@ for i in range(20):
     valor = int(input("Digite um número: "))
     lista.append(valor)
 
-for j in range(10):
-    soma += lista[j]
+    if i < 10:
+        soma += valor
 
-print(soma)
-
+print("Soma dos 10 primeiros elementos do vetor: ", soma)
 
 
 

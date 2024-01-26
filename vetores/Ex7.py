@@ -10,12 +10,13 @@ c = int(input("Digite o valor C: "))
 
 
 for i in vetor:
-    if a == i:
-        rep_a += 1
-    elif b == i:
-        rep_b += 1
-    elif c == i:
-        rep_c += 1
+    match i:
+        case a:
+            rep_a += 1
+        case b:
+            rep_b += 1
+        case c:
+            rep_c += 1
 
 print(f"""O número A aparece {rep_a} vezes no vetor
 O número B aparece {rep_b} vezes no vetor
