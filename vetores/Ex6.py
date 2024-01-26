@@ -1,7 +1,6 @@
 lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-lista_invertida = []
+print("Lista: ", lista, "\n")
 
-for i in range(len(lista)-1, -1, -1):
-    lista_invertida.append(lista[i])
+lista.reverse()
 
-print(lista_invertida)
+print("Lista invertida: ", lista)

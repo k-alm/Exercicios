@@ -4,8 +4,6 @@ for i in range(10):
     numero = int(input("Digite um número: "))
     lista.append(numero)
 
-print("Números maiores ou iguais a 10: ")
+maiores_que_dez = [item for item in lista if item > 10]
 
-for i in lista:
-    if i >= 10:
-        print(i)
+print(maiores_que_dez)

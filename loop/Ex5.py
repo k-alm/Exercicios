@@ -5,7 +5,6 @@ while qntd <= 50:
 
     print("-=" * 20, " TABELA DE PREÇOS ", "-=" * 20)
 
-    for i in range(1, qntd + 1):
-        print(f"Item {i} | Valor da conta: {i * 1.99:.2f}")
+    [print(f"Item {i} | Valor da conta: {i * 1.99:.2f}") for i in range(1, qntd + 1)]
 
     print("-=" * 40)

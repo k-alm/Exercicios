@@ -3,17 +3,20 @@ aprovado = False
 av_final = False
 
 def calcular_media(notas):
-    media = sum(notas)/len(notas)
-    return media
+   return sum(notas)/len(notas)
 
 
 for i in range(1, 6):
     nota = int(input(f"Digite a sua {i}º nota: "))
     notas.append(nota)
 
-if(calcular_media(notas) >= 7):
+media = calcular_media(notas)
+
+if(media >= 7):
     aprovado = True
-elif(calcular_media(notas) < 7 and calcular_media(notas) >= 4):
+elif(media < 7 and media >= 4):
     av_final = True
 else:
     aprovado = False
+
+print(f"Média: {media} | Aprovado: {aprovado} | Avaliação Final: {av_final}")

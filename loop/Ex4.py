@@ -1,4 +1,5 @@
-valor = int(input("Digite um valor: \n"))
+valor = int(input("Digite um valor: "))
 
-for i in range(1, 11):
-    print(f"{valor} * {i} = {valor * i}")
+print("TABUADA DO ", valor)
+
+[print(f"{valor} * {i} = {valor * i}") for i in range(1, 11)]

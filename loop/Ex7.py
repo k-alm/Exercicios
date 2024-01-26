@@ -1,43 +1,39 @@
 clientes = []
 
-cliente_mais_alto = None
-cliente_mais_baixo = None
-cliente_mais_magro = None
-cliente_menos_magro = None
-
-soma_altura = 0
-soma_peso = 0
-
-while True:
+def cadastrar_cliente():
     codigo = int(input("Digite o código [0 = Encerrar Cadastro]: "))
 
-    if codigo == 0: break
+    if codigo == 0: return None
 
     altura = int(input("Digite a altura em cm: "))
     peso = int(input("Digite o peso em kg: "))
 
     cliente = {"codigo": codigo, "altura": altura, "peso": peso}
+    return cliente
+
+
+def calcular_media(lista):
+    return sum(lista) / len(lista)
+
+
+while True:
+    cliente = cadastrar_cliente()
+
+    if cliente == None: break
+
     clientes.append(cliente)
 
-for cliente in clientes:
-    soma_altura += cliente["altura"]
-    soma_peso += cliente["peso"]
+alturas = [cliente["altura"] for cliente in clientes]
+pesos = [cliente["peso"] for cliente in clientes]
 
-    if cliente_mais_alto == None or cliente["altura"] > cliente_mais_alto["altura"]:
-        cliente_mais_alto = cliente
+mais_alto = max(clientes, key=lambda x: x["altura"])
+mais_baixo = min(clientes, key=lambda x: x["altura"])
+menos_magro = max(clientes, key=lambda x: x["peso"])
+mais_magro = min(clientes, key=lambda x: x["peso"])
 
-    if cliente_mais_baixo == None or cliente["altura"] < cliente_mais_baixo["altura"]:
-        cliente_mais_baixo = cliente
-
-    if cliente_mais_magro == None or cliente["peso"] < cliente_mais_magro["peso"]:
-        cliente_mais_magro = cliente
-
-    if cliente_menos_magro == None or cliente["peso"] > cliente_menos_magro["peso"]:
-        cliente_menos_magro = cliente
-
-media_altura = soma_altura / len(clientes)
-media_peso = soma_peso / len(clientes)
+media_altura = calcular_media(alturas)
+media_peso = calcular_media(pesos)
 
 print(f"Média das alturas: {media_altura} | Média dos pesos: {media_peso}\n")
 
-print(f"Cliente mais alto: {cliente_mais_alto} | Cliente mais baixo: {cliente_mais_baixo}\nCliente mais magro: {cliente_mais_magro} | Cliente menos magro: {cliente_menos_magro}")
+print(f"Cliente mais alto: {mais_alto} | Cliente mais baixo: {mais_baixo}\nCliente mais magro: {mais_magro} | Cliente menos magro: {menos_magro}")
